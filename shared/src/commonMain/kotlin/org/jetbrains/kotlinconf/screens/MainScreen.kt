@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.ime
-import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -71,6 +71,7 @@ import org.koin.compose.koinInject
 fun MainScreen(
     rootNavController: NavController,
     service: ConferenceService = koinInject(),
+    screen: Int,
 ) {
     LaunchedEffect(Unit) {
         service.completeOnboarding()
@@ -80,12 +81,17 @@ fun MainScreen(
         Modifier
             .fillMaxSize()
             .background(color = KotlinConfTheme.colors.mainBackground)
-            .windowInsetsPadding(WindowInsets.safeDrawing)
+            .windowInsetsPadding(WindowInsets.statusBars)
     ) {
         val nestedNavController = rememberNavController()
         NavHost(
             nestedNavController,
-            startDestination = ScheduleScreen,
+            startDestination = when(screen) {
+                    1 -> SpeakersScreen
+                    2 -> MapScreen
+                    3 -> InfoScreen
+                    else -> ScheduleScreen
+                },
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
@@ -131,8 +137,10 @@ fun MainScreen(
             }
         }
 
-        AnimatedVisibility(!isKeyboardOpen(), enter = fadeIn(snap()), exit = fadeOut(snap())) {
-            BottomNavigation(nestedNavController)
+        if (screen == -1) {
+            AnimatedVisibility(!isKeyboardOpen(), enter = fadeIn(snap()), exit = fadeOut(snap())) {
+                BottomNavigation(nestedNavController)
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ fun App(
     onThemeChange: ((isDarkTheme: Boolean) -> Unit)? = null,
     popEnterTransition: (@JvmSuppressWildcards AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition)? = null,
     popExitTransition: (@JvmSuppressWildcards AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition)? = null,
+    screen: Int = -1,
 ) {
     val service = koinInject<ConferenceService>()
     val currentTheme by service.getTheme().collectAsStateWithLifecycle(initialValue = Theme.SYSTEM)
@@ -54,7 +55,7 @@ fun App(
                     .background(KotlinConfTheme.colors.mainBackground)
             ) {
                 if (isOnboardingComplete != null) {
-                    KotlinConfNavHost(isOnboardingComplete, popEnterTransition, popExitTransition)
+                    KotlinConfNavHost(isOnboardingComplete, popEnterTransition, popExitTransition, screen)
                 }
             }
         }

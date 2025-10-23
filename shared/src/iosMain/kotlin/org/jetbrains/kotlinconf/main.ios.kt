@@ -43,8 +43,8 @@ class IOSLogger : Logger {
 }
 
 @Suppress("unused") // Called from Swift
-fun MainViewController(): UIViewController = ComposeUIViewController(
+fun MainViewController(screen: Int): UIViewController = ComposeUIViewController(
     configure = { onFocusBehavior = OnFocusBehavior.DoNothing },
 ) {
-    App()
+    App(screen = screen)
 }

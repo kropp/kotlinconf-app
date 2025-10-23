@@ -82,6 +82,7 @@ internal fun KotlinConfNavHost(
     isOnboardingComplete: Boolean,
     popEnterTransition: @JvmSuppressWildcards (AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition)?,
     popExitTransition: @JvmSuppressWildcards (AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition)?,
+    screen: Int,
 ) {
     val navController = rememberNavController()
 
@@ -97,7 +98,7 @@ internal fun KotlinConfNavHost(
             popEnterTransition = popEnterTransition,
             popExitTransition = popExitTransition,
         ) {
-            screens(navController)
+            screens(navController, screen)
         }
     } else {
         NavHost(
@@ -105,13 +106,13 @@ internal fun KotlinConfNavHost(
             startDestination = startDestination,
             modifier = Modifier.fillMaxSize(),
         ) {
-            screens(navController)
+            screens(navController, screen)
         }
     }
 }
 
 
-fun NavGraphBuilder.screens(navController: NavHostController) {
+fun NavGraphBuilder.screens(navController: NavHostController, screen: Int) {
     startScreens(
         navController = navController,
     )
@@ -119,6 +120,7 @@ fun NavGraphBuilder.screens(navController: NavHostController) {
     composable<MainScreen> {
         MainScreen(
             rootNavController = navController,
+            screen = screen
         )
     }
 
