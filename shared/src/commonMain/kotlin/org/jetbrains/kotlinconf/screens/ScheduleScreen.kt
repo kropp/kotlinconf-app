@@ -157,6 +157,7 @@ fun ScheduleScreen(
             .fillMaxSize()
             .background(color = KotlinConfTheme.colors.mainBackground)
     ) {
+/*
         Header(
             startContent = { NowButtonContent(state, listState) },
             headerState = headerState,
@@ -172,6 +173,7 @@ fun ScheduleScreen(
             thickness = 1.dp,
             color = KotlinConfTheme.colors.strokePale,
         )
+*/
 
         AnimatedContent(
             targetState = state,

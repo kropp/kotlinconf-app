@@ -75,6 +75,7 @@ fun SpeakersScreen(
     }
 
     Column(Modifier.fillMaxSize().background(color = KotlinConfTheme.colors.mainBackground)) {
+/*
         MainHeaderContainer(
             state = searchState,
             titleContent = {
@@ -108,6 +109,7 @@ fun SpeakersScreen(
         )
 
         Divider(1.dp, KotlinConfTheme.colors.strokePale)
+*/
 
         AnimatedContent(
             uiState,

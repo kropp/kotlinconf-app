@@ -56,8 +56,10 @@ fun InfoScreen(
     onSettings: () -> Unit,
 ) {
     Column(Modifier.fillMaxSize().background(color = KotlinConfTheme.colors.mainBackground)) {
+/*
         MainHeaderTitleBar(stringResource(Res.string.info_title))
         Divider(1.dp, KotlinConfTheme.colors.strokePale)
+*/
 
         Column(
             Modifier

@@ -21,6 +21,7 @@ struct ComposeView: UIViewControllerRepresentable {
 
 struct ContentView: View {
     @SceneStorage("selectedTab") private var selectedTabIndex = 0
+    @State private var searchText = ""
 
     var body: some View {
         if #available(iOS 26.0, *) {
@@ -41,7 +42,7 @@ struct ContentView: View {
                     ComposeView(screen: 3)
                         .ignoresSafeArea(.all)
                 }
-            }
+            }.searchable(text: $searchText)
         } else {
             // Fallback on earlier versions
             ComposeView(screen: 0)

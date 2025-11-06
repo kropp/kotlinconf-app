@@ -131,6 +131,7 @@ private fun MapScreenImpl(
     }
 
     Column(modifier.fillMaxSize().background(color = KotlinConfTheme.colors.mainBackground)) {
+/*
         MainHeaderTitleBar(
             title = stringResource(Res.string.map_title),
             startContent = {
@@ -144,6 +145,7 @@ private fun MapScreenImpl(
             }
         )
         Divider(thickness = 1.dp, color = KotlinConfTheme.colors.strokePale)
+*/
 
         Switcher(
             items = Floor.entries.map { stringResource(it.title) },
